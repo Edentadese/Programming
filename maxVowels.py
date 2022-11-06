@@ -1,19 +1,16 @@
 class Solution:
     def maxVowels(self, s: str, k: int) -> int:
-        set="aeiou"
         n=len(s)
-        max_val=0
-        for i in range(k):
-            if s[i] in set:
-                max_val+=1
-        i=0
-        curr_max=max_val
-        for j in range(k-1,n-1):
-            if s[i] in set:
-                max_val-=1
-            i+=1
-            j+=1
+        set="aeiou"
+        count=i=j=m_x=0
+        while j<n:
             if s[j] in set:
-                max_val+=1
-            curr_max=max(curr_max,max_val)
-        return curr_max
+                count+=1
+            if j-i>k-1:
+                if s[i] in set:
+                    count-=1
+                i+=1
+            m_x=max(m_x,count)
+            j+=1
+        return m_x
+        
